@@ -27,42 +27,16 @@ services:
     restart: unless-stopped
     ports:
       - "${BACKEND_PORT:-3000}:3000"
+    env_file:
+      - ./quikly-backend/.env
     environment:
       PORT: "${BACKEND_PORT:-3000}"
       NODE_ENV: "${NODE_ENV:-production}"
-      DATABASE_URL: "${DATABASE_URL:-postgresql://postgres:postgres@postgres:5432/quikly?sslmode=disable}"
-      BASE_URL: "${BASE_URL:-http://localhost:5173}"
       REDIS_URL: "${REDIS_URL:-redis://redis:6379}"
-      REDIS_PASS: "${REDIS_PASS:-}"
-      APP_DOMAIN: "${APP_DOMAIN:-http://localhost:5173}"
-      RATE_LIMIT_CAPACITY: "${RATE_LIMIT_CAPACITY:-100}"
-      RATE_LIMIT_REFILL_RATE: "${RATE_LIMIT_REFILL_RATE:-10}"
-      RATE_LIMIT_WINDOW_SEC: "${RATE_LIMIT_WINDOW_SEC:-3600}"
+      REDIS_PASS: ""
     depends_on:
-      postgres:
-        condition: service_healthy
       redis:
         condition: service_healthy
-    networks:
-      - quikly-net
-
-  # ── PostgreSQL ──────────────────────────────────────────────────────────────
-  postgres:
-    image: postgres:16-alpine
-    container_name: quikly-postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: quikly
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d quikly"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
     networks:
       - quikly-net
 
@@ -84,7 +58,6 @@ services:
       - quikly-net
 
 volumes:
-  postgres-data:
   redis-data:
 
 networks:
