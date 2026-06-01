@@ -33,8 +33,7 @@ export interface UrlResponse {
 
 export interface BulkUrlResponse {
   results: Array<
-    | { success: true; data: UrlResponse }
-    | { success: false; error: string; originalUrl: string }
+    { success: true; data: UrlResponse } | { success: false; error: string; originalUrl: string }
   >;
   summary: {
     total: number;

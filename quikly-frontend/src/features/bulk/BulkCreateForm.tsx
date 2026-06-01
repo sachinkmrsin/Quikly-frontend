@@ -81,10 +81,7 @@ function BulkCreateForm() {
                   )}
                 </div>
                 <div className="w-32 space-y-1">
-                  <Input
-                    placeholder="Custom code"
-                    {...register(`urls.${index}.customCode`)}
-                  />
+                  <Input placeholder="Custom code" {...register(`urls.${index}.customCode`)} />
                 </div>
                 <Button
                   type="button"
@@ -124,9 +121,7 @@ function BulkCreateForm() {
             </Button>
           </div>
 
-          {mutation.isError && (
-            <p className="text-sm text-destructive">{mutation.error.message}</p>
-          )}
+          {mutation.isError && <p className="text-sm text-destructive">{mutation.error.message}</p>}
 
           {showResults && mutation.data && (
             <div className="space-y-3 rounded-md border p-4">
@@ -142,7 +137,14 @@ function BulkCreateForm() {
                   </span>
                 )}
               </div>
-              <Button variant="outline" size="sm" onClick={() => { reset(); setShowResults(false); }}>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  reset();
+                  setShowResults(false);
+                }}
+              >
                 Create more
               </Button>
             </div>

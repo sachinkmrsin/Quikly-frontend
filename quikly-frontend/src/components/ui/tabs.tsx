@@ -11,10 +11,17 @@ function Tabs({ value, onValueChange, className, children, ...props }: TabsProps
     <div className={cn("w-full", className)} data-value={value} {...props}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
-          ? React.cloneElement(child as React.ReactElement<{ value?: string; activeValue?: string; onValueChange?: (v: string) => void }>, {
-              activeValue: value,
-              onValueChange,
-            })
+          ? React.cloneElement(
+              child as React.ReactElement<{
+                value?: string;
+                activeValue?: string;
+                onValueChange?: (v: string) => void;
+              }>,
+              {
+                activeValue: value,
+                onValueChange,
+              }
+            )
           : child
       )}
     </div>
@@ -38,10 +45,16 @@ const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
-          ? React.cloneElement(child as React.ReactElement<{ activeValue?: string; onValueChange?: (v: string) => void }>, {
-              activeValue,
-              onValueChange,
-            })
+          ? React.cloneElement(
+              child as React.ReactElement<{
+                activeValue?: string;
+                onValueChange?: (v: string) => void;
+              }>,
+              {
+                activeValue,
+                onValueChange,
+              }
+            )
           : child
       )}
     </div>

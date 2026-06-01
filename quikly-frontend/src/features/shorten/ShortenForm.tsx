@@ -81,11 +81,7 @@ function ShortenForm() {
                 />
               </div>
               <Button type="submit" disabled={mutation.isPending}>
-                {mutation.isPending ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  "Shorten"
-                )}
+                {mutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : "Shorten"}
               </Button>
             </div>
             {errors.originalUrl && (
@@ -106,29 +102,19 @@ function ShortenForm() {
             <div className="grid gap-4 rounded-md border p-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="customCode">Custom code (optional)</Label>
-                <Input
-                  id="customCode"
-                  placeholder="my-link"
-                  {...register("customCode")}
-                />
+                <Input id="customCode" placeholder="my-link" {...register("customCode")} />
                 {errors.customCode && (
                   <p className="text-sm text-destructive">{errors.customCode.message}</p>
                 )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="expiresAt">Expires at (optional)</Label>
-                <Input
-                  id="expiresAt"
-                  type="datetime-local"
-                  {...register("expiresAt")}
-                />
+                <Input id="expiresAt" type="datetime-local" {...register("expiresAt")} />
               </div>
             </div>
           )}
 
-          {mutation.isError && (
-            <p className="text-sm text-destructive">{mutation.error.message}</p>
-          )}
+          {mutation.isError && <p className="text-sm text-destructive">{mutation.error.message}</p>}
 
           {mutation.isSuccess && mutation.data && (
             <div className="flex items-center gap-2 rounded-md border bg-muted p-3">

@@ -40,7 +40,8 @@ function HomePage() {
             </span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Transform long, unwieldy URLs into short, memorable links. Track clicks, set expiration dates, and more.
+            Transform long, unwieldy URLs into short, memorable links. Track clicks, set expiration
+            dates, and more.
           </p>
         </div>
       </section>

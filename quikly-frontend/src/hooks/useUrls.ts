@@ -23,10 +23,7 @@ export function useCreateShortUrl() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: CreateUrlDto): Promise<UrlResponse> => {
-      const res = await api.post<{ success: boolean; data: UrlResponse }>(
-        "/shorten",
-        data
-      );
+      const res = await api.post<{ success: boolean; data: UrlResponse }>("/shorten", data);
       return res.data.data;
     },
     onSuccess: () => {
@@ -68,10 +65,9 @@ export function useTopUrls(limit = 10) {
   return useQuery({
     queryKey: urlKeys.top(limit),
     queryFn: async (): Promise<Url[]> => {
-      const res = await api.get<{ success: boolean; data: Url[] }>(
-        "/api/urls/top",
-        { params: { limit } }
-      );
+      const res = await api.get<{ success: boolean; data: Url[] }>("/api/urls/top", {
+        params: { limit },
+      });
       return res.data.data;
     },
   });
@@ -81,9 +77,7 @@ export function useUrlStats(shortCode: string) {
   return useQuery({
     queryKey: urlKeys.stats(shortCode),
     queryFn: async (): Promise<UrlStatsResponse> => {
-      const res = await api.get<UrlStatsResponse>(
-        `/stats/${shortCode}`
-      );
+      const res = await api.get<UrlStatsResponse>(`/stats/${shortCode}`);
       return res.data;
     },
     enabled: !!shortCode,

@@ -41,7 +41,9 @@ function UrlList() {
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <p className="text-center text-destructive">{error.message}</p>;
   if (!data?.data.length)
-    return <p className="text-center text-muted-foreground py-8">No URLs yet. Create your first one!</p>;
+    return (
+      <p className="text-center text-muted-foreground py-8">No URLs yet. Create your first one!</p>
+    );
 
   return (
     <div className="space-y-4">

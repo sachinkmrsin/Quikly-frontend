@@ -8,9 +8,7 @@ function Footer() {
           <Zap className="h-4 w-4" />
           <span>Quikly URL Shortener</span>
         </div>
-        <p className="text-sm text-muted-foreground">
-          Built with React + Vite
-        </p>
+        <p className="text-sm text-muted-foreground">Built with React + Vite</p>
       </div>
     </footer>
   );
